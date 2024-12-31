@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000; /* Black background */
+    overflow: hidden;
+    transition: background-color 0.5s; /* Smooth background color transition */
+}
+
+body.x-wins {
+    animation: flashBlue 1s ease-in-out;
+}
+
+body.o-wins {
+    animation: flashRed 1s ease-in-out;
+}
+
+@keyframes flashBlue {
+    0% { background-color: #000; }
+    50% { background-color: rgba(0, 0, 255, 0.3); }
+    100% { background-color: #000; }
+}
+
+@keyframes flashRed {
+    0% { background-color: #000; }
+    50% { background-color: rgba(255, 0, 0, 0.3); }
+    100% { background-color: #000; }
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #fff; /* White font */
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+    position: relative; /* Allows winner-line to be properly aligned */
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: transparent;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Lighter glow around cells */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Glowing effect for X and O cells */
+.cell.x {
+    color: red;
+    box-shadow: 0 0 15px red, 0 0 30px red; /* Glowing red for X */
+    text-shadow: 0 0 10px red, 0 0 20px red; /* Neon glow for X */
+}
+
+.cell.o {
+    color: blue;
+    box-shadow: 0 0 15px blue, 0 0 30px blue; /* Glowing blue for O */
+    text-shadow: 0 0 10px blue, 0 0 20px blue; /* Neon glow for O */
+}
+
+/* Winner line customization */
+.winner-line {
+    position: absolute;
+    height: 4px;
+    background-color: lime;
+    z-index: 1;
+    transform-origin: left center;
+    animation: lineDraw 0.5s ease-in-out forwards;
+}
+
+@keyframes lineDraw {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.reset-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s;
+}
+
+.reset-btn:hover {
+    background-color: #ddd;
+}
+
+.winner-message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #fff; /* White font */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+}
